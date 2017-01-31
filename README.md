@@ -13,15 +13,15 @@ Each of the above files have sql code for creating respective tables and also da
 
 Instead of this, we can create tables without indexes, load the data and then create the indexes after the load has finished.
 
-$grep -n "Dumping data" enwiki-latest-redirect.sql
+**$grep -n "Dumping data" enwiki-latest-redirect.sql**
 
 37:-- Dumping data for table `redirect`
 
 This command returns the line number that separates the table creation part and actual data part. Here it is '37'. Using this number create the following two files.
 
-head -37 enwiki-latest-redirect.sql > redirect-creation.sql
+**head -37 enwiki-latest-redirect.sql > redirect-creation.sql**
 
-tail -n +37 enwiki-latest-redirect.sql > redirect-data.sql
+**tail -n +37 enwiki-latest-redirect.sql > redirect-data.sql**
 
 redirect-creation.sql has the following table creation code:-
 
@@ -37,21 +37,21 @@ CREATE TABLE `redirect` (
 
 We remove the keys from the table creation as follows:-
 
-CREATE TABLE `redirect` (
+**CREATE TABLE `redirect` (
   `rd_from` int(8) unsigned NOT NULL DEFAULT '0',
   `rd_namespace` int(11) NOT NULL DEFAULT '0',
   `rd_title` varbinary(255) NOT NULL DEFAULT '',
   `rd_interwiki` varbinary(32) DEFAULT NULL,
   `rd_fragment` varbinary(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=binary;
+) ENGINE=InnoDB DEFAULT CHARSET=binary;**
 
 The table creation codes are available for page, pagelinks, categorylinks and redirect. 
 
 The same process can be followed for other dumps as well.
 
 
-mysql -uroot database_name < redirect-creation.sql
+**mysql -uroot database_name < redirect-creation.sql**
 
-mysql -uroot database_name < redirect-data.sql
+**mysql -uroot database_name < redirect-data.sql**
 
 
