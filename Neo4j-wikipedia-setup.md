@@ -1,5 +1,5 @@
 
-After setting up wikipedia in mysql, get the csv files as follows:-
+After setting up wikipedia in mysql (as explained in https://github.com/hemanthsagarb/wikidump-setup/blob/master/README.md), get the csv files as follows:-
 
 - select page_id, page_title from page where page_namespace=0 into  outfile '/tmp/page.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'   LINES TERMINATED BY '\n';
 
