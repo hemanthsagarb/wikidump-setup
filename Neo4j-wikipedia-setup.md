@@ -54,4 +54,4 @@ To get any 10 categories
 
 match (n:Category) return n limit 10;
 
-![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/any_10_cats.png)
+![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/any_10_cats.png)
