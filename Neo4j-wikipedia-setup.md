@@ -55,3 +55,26 @@ To get any 10 categories
 match (n:Category) return n limit 10;
 
 ![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/any_10_cats.png)
+
+
+
+To get any 10 articles 
+
+match (n:Article) return n limit 10;
+
+![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/any_10_articles.png)
+
+
+To see any 10 redirects
+
+match (m)-[:RD]-> (n) return m,n limit 10;
+
+![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/any_redirects.png)
+
+
+To get top 10 Categories of a given article
+
+match (n:Article{title:"Anarchism"})-[:CAT]->(m) return m limit 10
+
+![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/anarchism_categories.png)
+
