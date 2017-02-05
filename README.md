@@ -54,4 +54,9 @@ The same process can be followed for other dumps as well.
 
 **mysql -uroot database_name < redirect-data.sql**
 
+Once all the files are loaded we can add indexes to the required columns. For the redirect table, we can create indexes as follows:-
+ - create index idx_rd_from on redirect(rd_from);
+ - create index idx_rd_title_ns on redirect(rd_title, rd_namespace);
 
+Indexes for other tables can be found in indexes.sql
+ 
