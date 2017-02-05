@@ -19,11 +19,15 @@ Create (m:Article{wiki_id:toInt(line[0]), title: line[1]})
 
 create index on :Article(wiki_id)
 
+create index on :Article(title)
+
 using periodic commit
 LOAD CSV FROM "file:///cats.csv" AS line 
 Create (m:Category{wiki_id:toInt(line[0]), title: line[1]})  
 
 create index on :Category(wiki_id)
+
+create index on :Category(title)
 
 using periodic commit
 LOAD CSV FROM "file:///redirects.csv" AS line 
