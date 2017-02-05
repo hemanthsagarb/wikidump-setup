@@ -17,10 +17,13 @@ using periodic commit
 LOAD CSV FROM "file:///page.csv" AS line 
 Create (m:Article{wiki_id:toInt(line[0]), title: line[1]})  
 
+create index on :Article(wiki_id)
 
 using periodic commit
 LOAD CSV FROM "file:///cats.csv" AS line 
 Create (m:Category{wiki_id:toInt(line[0]), title: line[1]})  
+
+create index on :Category(wiki_id)
 
 using periodic commit
 LOAD CSV FROM "file:///redirects.csv" AS line 
