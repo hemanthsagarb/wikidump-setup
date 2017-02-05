@@ -46,3 +46,12 @@ LOAD CSV FROM "file:///subcats.csv" AS line
 Match (n:Category{wiki_id:toInt(line[0])})  
 Match (m:Category{wiki_id:toInt(line[1])})
 Create (n)-[:CAT]-(m)
+
+
+## Neo4j Queries
+
+To get any 10 categories 
+
+match (n:Category) return n limit 10;
+
+![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/any_10_cats.png)
