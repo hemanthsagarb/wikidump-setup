@@ -74,9 +74,9 @@ match (n:Article) return n limit 10;
 ![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/any_10_articles.png)
 
 
-### To see any 10 redirects
+### To see any 10 redirects of any article
 
-match (m)-[:RD]-> (n) return m,n limit 10;
+match (m)-[:RD]-> (n:Article{title:"Algorithm"}) return m,n limit 20;
 
 ![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/any_redirects.png)
 
@@ -87,3 +87,8 @@ match (n:Article{title:"Anarchism"})-[:CAT]->(m) return m limit 10
 
 ![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/anarchism_categories.png)
 
+### To get the shortest path between any two articles
+
+MATCH (m:Article{title:"Anarchism"})
+MATCH (n:Article{title:"Democracy"})
+MATCH path = shortestpath((n)-[:CAT*..10]->(m)) return path
