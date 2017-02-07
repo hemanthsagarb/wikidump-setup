@@ -92,3 +92,20 @@ match (n:Article{title:"Anarchism"})-[:CAT]->(m) return m limit 10
 MATCH (m:Article{title:"Anarchism"})
 MATCH (n:Article{title:"Democracy"})
 MATCH path = shortestpath((n)-[:CAT*..10]->(m)) return path
+
+
+### To see if two topics are related we can use the following queries. We experiment with three pairs (Mathematics, Calculus), (Biology, Bacteria), (Biology, Calculus). 
+
+Match (n:Article{title:"Mathematics"}) Match(m:Article{title:"Calculus"}) return (n)-[:CAT*..5]-(m)
+
+![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/calc_mathematics.png)
+
+
+Match (n:Article{title:"Biology"}) Match(m:Article{title:"Bacteria"}) return (n)-[:CAT*..5]-(m)
+
+![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/biology_bacteria.png)
+
+
+Match (n:Article{title:"Biology"}) Match(m:Article{title:"Calculus"}) return (n)-[:CAT*..5]-(m)
+
+![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/calc_biology.png)
