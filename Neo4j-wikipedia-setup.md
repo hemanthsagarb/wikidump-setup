@@ -109,3 +109,7 @@ Match (n:Article{title:"Biology"}) Match(m:Article{title:"Bacteria"}) return (n)
 Match (n:Article{title:"Biology"}) Match(m:Article{title:"Calculus"}) return (n)-[:CAT*..5]-(m)
 
 ![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/calc_biology.png)
+
+Match (n:Article{title:"Natural_language_processing"}) Match(m:Article{title:"Machine_learning"}) return (n)-[:CAT*..5]-(m)
+
+![ScreenShot](https://raw.github.com/hemanthsagarb/wikidump-setup/master/images/nlp_ml.png)
