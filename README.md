@@ -60,3 +60,6 @@ Once all the files are loaded we can add indexes to the required columns. For th
 
 Indexes for other tables can be found in indexes.sql
  
+alter table page add column norm_title varbinary(255);
+update page set norm_title = LOWER(CONVERT(BINARY page_title USING latin1));
+create index idx_norm_title on page(norm_title);
