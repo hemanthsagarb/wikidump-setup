@@ -62,6 +62,6 @@ Indexes for other tables can be found in indexes.sql
  
 alter table page add column norm_title varbinary(255);
 
-update page set norm_title = LOWER(CONVERT(BINARY page_title USING latin1));
+update page set norm_title = LOWER(CONVERT(BINARY page_title USING UTF8));
 
 create index idx_norm_title on page(norm_title);
