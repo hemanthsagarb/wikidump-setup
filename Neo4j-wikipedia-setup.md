@@ -59,7 +59,7 @@ create index on :Category(norm)
 
 create index on :Norm(text)
 
-using periodic commit LOAD CSV FROM "file:///redirects.csv" AS line MATCH (n:Article{title:line[1]}) MERGE (m:Norm{text:line[0]}) MERGE (m)-[:RD]->(n)
+using periodic commit LOAD CSV FROM "file:///norms.csv" AS line MATCH (n:Article{title:line[1]}) MERGE (m:Norm{text:line[0]}) MERGE (m)-[:RD]->(n)
 
 **Wikipedia has two main categories for main articles. There are wikipedia functionality categories like "Disambiguation pages", "wikipedia redirects" which are generally hidden on the main html wikipedia page. This information is not available in the dumps. Using neo4j we can remove/tag these using the following query. Every category which do not have a path to either "Fundamental categories" or "Main topic classifications" are tagged with a property 'is_hidden' to true as follows:**
 
