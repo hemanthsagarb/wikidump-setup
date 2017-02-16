@@ -11,6 +11,8 @@ After setting up wikipedia in mysql (as explained in https://github.com/hemanths
 
 - select cl_from, a.page_id from categorylinks, page a, page b where cl_to = a.page_title and a.page_namespace=14 and b.page_id = cl_from and b.page_namespace=14 and b.page_is_redirect=0 into outfile '/tmp/subcats.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
+select norm_title,rd_title, rd_namespace from page, redirect where page_id = rd_from into outfile '/tmp/norms.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+
 ## Loading the files in Neo4j browser
 
 using periodic commit
@@ -54,6 +56,10 @@ MATCH (n:Category) set n.norm = lower(n.title)
 create index on :Article(norm)
 
 create index on :Category(norm)
+
+create index on :Norm(text)
+
+using periodic commit LOAD CSV FROM "file:///redirects.csv" AS line MATCH (n:Article{title:line[1]}) MERGE (m:Norm{text:line[0]}) MERGE (m)-[:RD]->(n)
 
 **Wikipedia has two main categories for main articles. There are wikipedia functionality categories like "Disambiguation pages", "wikipedia redirects" which are generally hidden on the main html wikipedia page. This information is not available in the dumps. Using neo4j we can remove/tag these using the following query. Every category which do not have a path to either "Fundamental categories" or "Main topic classifications" are tagged with a property 'is_hidden' to true as follows:**
 
