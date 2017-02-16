@@ -11,7 +11,7 @@ After setting up wikipedia in mysql (as explained in https://github.com/hemanths
 
 - select cl_from, a.page_id from categorylinks, page a, page b where cl_to = a.page_title and a.page_namespace=14 and b.page_id = cl_from and b.page_namespace=14 and b.page_is_redirect=0 into outfile '/tmp/subcats.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
-select norm_title,rd_title, rd_namespace from page, redirect where page_id = rd_from into outfile '/tmp/norms.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
+- select norm_title,rd_title, rd_namespace from page, redirect where page_id = rd_from into outfile '/tmp/norms.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
 ## Loading the files in Neo4j browser
 
