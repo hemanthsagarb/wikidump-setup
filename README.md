@@ -60,8 +60,10 @@ Once all the files are loaded we can add indexes to the required columns. For th
 
 Indexes for other tables can be found in indexes.sql
  
-alter table page add column norm_title varbinary(255);
+Add column to page table so that titles can be searched using lower case (mRNA -> mrna, Usa -> usa) using following sql commands:
 
-update page set norm_title = LOWER(CONVERT(BINARY page_title USING UTF8));
+- alter table page add column norm_title varbinary(255);
 
-create index idx_norm_title on page(norm_title);
+- update page set norm_title = LOWER(CONVERT(BINARY page_title USING UTF8));
+
+- create index idx_norm_title on page(norm_title);
