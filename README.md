@@ -67,3 +67,27 @@ Add column to page table so that titles can be searched using lower case (mRNA -
 - update page set norm_title = LOWER(CONVERT(BINARY page_title USING UTF8));
 
 - create index idx_norm_title on page(norm_title);
+
+### Processing raw wikidumps and mining data
+
+#### Wikilinks
+Wikilinks are of the form [[United_States_dollar|$]]. The right side of the pipe is what appears as part of text and when we click on it, it takes to the wiki article on the left side of the pipe. More about wikilinks can be found here (https://en.wikipedia.org/wiki/Help:Link).
+
+
+We process the dump and collect the counts of cooccurences of such pairs. 
+
+The code to process the dump and analyze the wikilinks can be found in:-
+https://github.com/hemanthsagarb/wikify/blob/master/src/main/java/corpus_generation/WikilinkAnalyzer.java
+This takes about 6 hrs to run on Macbook pro 2.5 GHz Intel Core i7.
+
+When we run the above, it will write a csv file which looks like this
+
+- "apple_ipad","Apple_iPad","IPad","MAIN_ARTICLE","51"
+- "apple_imac","Apple_iMac","IMac","MAIN_ARTICLE","3"
+- "rna","RNA","Non-coding_RNA","MAIN_ARTICLE","157"
+- "rna","RNA","RNA_virus","MAIN_ARTICLE","8"
+
+This data can be used to calculate what a phrase/word can mean as per wikipedia. For example, the word 'apple' can mean Apple, Apple_Inc., Apple_Records, etc. In other words, it gives the most prominent senses (if we order by cooccurence counts) for a given word or phrase.
+
+
+
