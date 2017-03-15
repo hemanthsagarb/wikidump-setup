@@ -6,7 +6,7 @@ create wikilinks
     count int(8)
   );
 
-LOAD DATA INFILE 'wikilinks_analysis.csv' INTO TABLE surface_forms  FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
+LOAD DATA INFILE 'wikilinks_analysis.csv' INTO TABLE wikilinks  FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
 create index idx_wikilinks_norm on wikilinks(norm);
 
