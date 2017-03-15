@@ -63,7 +63,7 @@ using periodic commit LOAD CSV FROM "file:///norms.csv" AS line MATCH (n:Article
 
 **Wikipedia has two main categories for main articles. There are wikipedia functionality categories like "Disambiguation pages", "wikipedia redirects" which are generally hidden on the main html wikipedia page. This information is not available in the dumps. Using neo4j we can remove/tag these using the following query. Every category which do not have a path to either "Fundamental categories" or "Main topic classifications" are tagged with a property 'is_hidden' to true as follows:**
 
-using periodic commit LOAD CSV FROM "file:///tmp/cats.csv" AS line MATCH (m:Category{title:"Fundamental_categories"}) MATCH (k:Category{title:"Main_topic_classifications"}) MATCH (n:Category{title:line[1]}) set n.is_hidden = ( shortestpath((n)-[*..15]->(k)) IS NULL and shortestpath((n)-[*..15]->(k)) IS NULL);
+using periodic commit LOAD CSV FROM "file:///tmp/cats.csv" AS line MATCH (m:Category{title:"Fundamental_categories"}) MATCH (k:Category{title:"Main_topic_classifications"}) MATCH (n:Category{title:line[1]}) set n.is_hidden = ( shortestpath((n)-[\*..15]->(k)) IS NULL and shortestpath((n)-[\*..15]->(m)) IS NULL);
 
 **we can delete all the hidden categories so that they dont be a part of our graph algorithms**
 
