@@ -1,4 +1,4 @@
-create wikilinks 
+create table wikilinks 
   ( norm varbinary(255), 
     surface_form varbinary(255),
     page_title varbinary(255),
