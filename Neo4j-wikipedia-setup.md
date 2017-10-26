@@ -37,19 +37,19 @@ using periodic commit
 LOAD CSV FROM "file:///redirects.csv" AS line 
 Match (n:Article{wiki_id:toInt(line[0])})  
 Match (m:Article{wiki_id:toInt(line[1])})
-Create (n)-[:RD]-(m)
+Create (n)-[:RD]->(m)
 
 using periodic commit
 LOAD CSV FROM "file:///catlinks_articles.csv" AS line 
 Match (n:Article{wiki_id:toInt(line[0])})  
 Match (m:Category{wiki_id:toInt(line[1])})
-Create (n)-[:CAT]-(m)
+Create (n)-[:CAT]->(m)
 
 using periodic commit
 LOAD CSV FROM "file:///subcats.csv" AS line 
 Match (n:Category{wiki_id:toInt(line[0])})  
 Match (m:Category{wiki_id:toInt(line[1])})
-Create (n)-[:CAT]-(m)
+Create (n)-[:CAT]->(m)
 
 **Wikipedia has one root category for main articles. There are wikipedia functionality categories like "Disambiguation pages", "wikipedia redirects" which are generally hidden on the main html wikipedia page. This information is not available in the dumps. Using neo4j we can remove/tag these using the following query. Every category which do not have a path to  "Main topic classifications" category are tagged with a property 'is_hidden' to true as follows:**
 
