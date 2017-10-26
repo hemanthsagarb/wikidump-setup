@@ -67,7 +67,7 @@ Add column to page table so that titles can be searched using lower case (mRNA -
 - update page set norm_title = LOWER(CONVERT(BINARY page_title USING UTF8));
 
 - create index idx_norm_title on page(norm_title);
-
+<!--
 ### Processing raw wikidumps and mining data
 
 #### Wikilinks
@@ -90,7 +90,7 @@ When we run the above, it will write a csv file which looks like this
 This data can be used to calculate what a phrase/word can mean as per wikipedia. For example, the word 'apple' can mean Apple, Apple_Inc., Apple_Records, etc. In other words, it gives the most prominent senses (if we order by cooccurence counts) for a given word or phrase.
 
 The resulting csv file can be imported to db using https://github.com/hemanthsagarb/wikidump-setup/blob/master/dump_analysis/wikilinks.sql
-
+-->
 
 
 
